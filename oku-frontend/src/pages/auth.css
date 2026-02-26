@@ -1,0 +1,326 @@
+/* ─────────────────────────────────────────────
+   auth.css — Login & Register pages
+   Light / dark via [data-theme] on <html>
+───────────────────────────────────────────── */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=DM+Sans:wght@300;400;500;600&display=swap");
+
+/* ── Dark (default) ── */
+:root,
+[data-theme="dark"] {
+  --auth-bg:           #181818;
+  --auth-surface:      #202020;
+  --auth-card:         #242424;
+  --auth-border:       rgba(255, 255, 255, 0.08);
+  --auth-border-focus: rgba(255, 255, 255, 0.32);
+  --auth-text:         #e6e6e6;
+  --auth-muted:        #666666;
+  --auth-label:        #444444;
+  --auth-placeholder:  #3e3e3e;
+  --auth-error:        #bf5545;
+  --auth-btn-bg:       #2a2a2a;
+  --auth-btn-hover:    #333333;
+  --auth-logo:         url("/white_logo.png");
+  color-scheme: dark;
+}
+
+/* ── Light ── */
+[data-theme="light"] {
+  --auth-bg:           #f2f0ec;
+  --auth-surface:      #eae8e4;
+  --auth-card:         #e4e2de;
+  --auth-border:       rgba(0, 0, 0, 0.09);
+  --auth-border-focus: rgba(0, 0, 0, 0.35);
+  --auth-text:         #1a1a1a;
+  --auth-muted:        #888888;
+  --auth-label:        #aaaaaa;
+  --auth-placeholder:  #b0aea9;
+  --auth-error:        #b04030;
+  --auth-btn-bg:       #d8d6d2;
+  --auth-btn-hover:    #cccac6;
+  --auth-logo:         url("/dark_logo.png");
+  color-scheme: light;
+}
+
+/* ── Reset ── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  background: var(--auth-bg);
+  color: var(--auth-text);
+  font-family: "DM Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.22s ease, color 0.22s ease;
+}
+
+a { text-decoration: none; color: inherit; }
+
+/* ══════════════════════════════════════
+   SHELL
+══════════════════════════════════════ */
+.auth-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--auth-bg);
+  transition: background 0.22s ease;
+}
+
+/* ══════════════════════════════════════
+   HEADER
+══════════════════════════════════════ */
+.auth-header {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 22px;
+  border-bottom: 1px solid var(--auth-border);
+  background: var(--auth-surface);
+  flex-shrink: 0;
+  transition: background 0.22s ease;
+}
+
+.auth-header__brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.auth-header__logo {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+}
+
+.auth-header__name {
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  color: var(--auth-text);
+}
+
+.auth-header__theme {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: 1px solid var(--auth-border);
+  border-radius: 3px;
+  color: var(--auth-muted);
+  cursor: pointer;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+
+.auth-header__theme:hover {
+  color: var(--auth-text);
+  border-color: var(--auth-border-focus);
+  background: var(--auth-border);
+}
+
+/* ══════════════════════════════════════
+   MAIN
+══════════════════════════════════════ */
+.auth-main {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+}
+
+/* ══════════════════════════════════════
+   CARD
+══════════════════════════════════════ */
+.auth-card {
+  width: 100%;
+  max-width: 400px;
+  background: var(--auth-card);
+  border: 1px solid var(--auth-border);
+  border-radius: 6px;
+  padding: 44px 40px 36px;
+  display: flex;
+  flex-direction: column;
+  animation: card-in 0.38s cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition: background 0.22s ease, border-color 0.22s ease;
+}
+
+@keyframes card-in {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Logo in card ── */
+.auth-logo-wrap {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+
+.auth-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.auth-logo-name {
+  font-family: "DM Mono", monospace;
+  font-size: 18px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--auth-text);
+}
+
+/* ── Eyebrow / Heading ── */
+.auth-eyebrow {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  color: var(--auth-label);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.auth-heading {
+  font-size: 28px;
+  font-weight: 300;
+  letter-spacing: -0.02em;
+  color: var(--auth-text);
+  margin-bottom: 32px;
+}
+
+/* ── Error ── */
+.auth-error {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  color: var(--auth-error);
+  background: color-mix(in srgb, var(--auth-error) 9%, transparent);
+  border: 1px solid color-mix(in srgb, var(--auth-error) 22%, transparent);
+  border-radius: 4px;
+  padding: 10px 14px;
+  margin-bottom: 20px;
+  letter-spacing: 0.02em;
+}
+
+/* ── Form ── */
+.auth-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* ── Field ── */
+.auth-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.auth-field__label {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  color: var(--auth-label);
+  text-transform: uppercase;
+}
+
+.auth-field__input {
+  background: var(--auth-surface);
+  border: 1px solid var(--auth-border);
+  border-radius: 4px;
+  color: var(--auth-text);
+  font-family: "DM Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  padding: 12px 14px;
+  outline: none;
+  transition: border-color 0.15s ease, background 0.22s ease;
+  width: 100%;
+}
+
+.auth-field__input::placeholder {
+  color: var(--auth-placeholder);
+  font-size: 15px;
+}
+
+.auth-field__input:focus {
+  border-color: var(--auth-border-focus);
+}
+
+/* ── Submit ── */
+.auth-submit {
+  margin-top: 10px;
+  background: var(--auth-btn-bg);
+  border: 1px solid var(--auth-border);
+  border-radius: 4px;
+  color: var(--auth-text);
+  cursor: pointer;
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  padding: 14px;
+  transition: background 0.15s ease, border-color 0.15s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 48px;
+}
+
+.auth-submit:hover:not(:disabled) {
+  background: var(--auth-btn-hover);
+  border-color: var(--auth-border-focus);
+}
+
+.auth-submit:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+.auth-submit:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+}
+
+/* ── Spinner ── */
+.auth-spinner {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid color-mix(in srgb, var(--auth-text) 15%, transparent);
+  border-top-color: var(--auth-text);
+  border-radius: 50%;
+  animation: auth-spin 0.7s linear infinite;
+  display: block;
+}
+
+@keyframes auth-spin {
+  to { transform: rotate(360deg); }
+}
+
+/* ── Footnote ── */
+.auth-footnote {
+  margin-top: 24px;
+  font-size: 14px;
+  font-weight: 300;
+  color: var(--auth-muted);
+  text-align: center;
+}
+
+.auth-footnote__link {
+  color: var(--auth-text);
+  font-weight: 500;
+  transition: opacity 0.12s ease;
+}
+
+.auth-footnote__link:hover {
+  opacity: 0.65;
+}
+
+/* ── Responsive ── */
+@media (max-width: 440px) {
+  .auth-card { padding: 32px 22px 28px; }
+  .auth-heading { font-size: 24px; }
+}

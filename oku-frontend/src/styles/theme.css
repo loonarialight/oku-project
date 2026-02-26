@@ -1,0 +1,357 @@
+/* ═══════════════════════════════════════════════
+   theme.css — CSS variables for dark & light mode
+   Applied via [data-theme="dark"] / [data-theme="light"]
+   on <html> element by ThemeContext
+═══════════════════════════════════════════════ */
+
+@import url("https://fonts.googleapis.com/css2?family=DM+Mono:ital,wght@0,300;0,400;0,500;1,300&family=DM+Sans:wght@300;400;500;600&display=swap");
+
+/* ── Dark theme (default) ── */
+:root,
+[data-theme="dark"] {
+  --bg:              #181818;
+  --bg-surface:      #202020;
+  --bg-card:         #232323;
+  --bg-card-hover:   #282828;
+  --bg-input:        #1e1e1e;
+  --border:          rgba(255, 255, 255, 0.07);
+  --border-mid:      rgba(255, 255, 255, 0.13);
+  --border-focus:    rgba(255, 255, 255, 0.32);
+  --text:            #e4e4e4;
+  --text-secondary:  #a0a0a0;
+  --text-muted:      #5c5c5c;
+  --text-label:      #3c3c3c;
+  --accent:          #e4e4e4;
+  --accent-inv:      #111111;
+  --live:            #4caf6e;
+  --error:           #bf5545;
+  --chart-bar:       rgba(255, 255, 255, 0.18);
+  --chart-bar-hover: rgba(255, 255, 255, 0.38);
+  --chart-bar-best:  rgba(255, 255, 255, 0.6);
+  --chart-axis:      #3a3a3a;
+  --chart-tick:      #4a4a4a;
+  --progress-track:  rgba(255, 255, 255, 0.08);
+  --progress-fill:   rgba(255, 255, 255, 0.48);
+  --theme-icon:      "☀";
+  color-scheme: dark;
+}
+
+/* ── Light theme ── */
+[data-theme="light"] {
+  --bg:              #f4f3f0;
+  --bg-surface:      #edebe8;
+  --bg-card:         #e8e6e2;
+  --bg-card-hover:   #e2e0dc;
+  --bg-input:        #eeece9;
+  --border:          rgba(0, 0, 0, 0.08);
+  --border-mid:      rgba(0, 0, 0, 0.15);
+  --border-focus:    rgba(0, 0, 0, 0.35);
+  --text:            #1a1a1a;
+  --text-secondary:  #505050;
+  --text-muted:      #888888;
+  --text-label:      #b8b8b8;
+  --accent:          #1a1a1a;
+  --accent-inv:      #f4f3f0;
+  --live:            #2d8a50;
+  --error:           #b04030;
+  --chart-bar:       rgba(0, 0, 0, 0.12);
+  --chart-bar-hover: rgba(0, 0, 0, 0.25);
+  --chart-bar-best:  rgba(0, 0, 0, 0.55);
+  --chart-axis:      rgba(0, 0, 0, 0.1);
+  --chart-tick:      #aaaaaa;
+  --progress-track:  rgba(0, 0, 0, 0.08);
+  --progress-fill:   rgba(0, 0, 0, 0.45);
+  color-scheme: light;
+}
+
+/* ── Base reset ── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: "DM Sans", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  transition: background 0.22s ease, color 0.22s ease;
+}
+
+a { text-decoration: none; color: inherit; }
+button { font-family: inherit; }
+
+/* ── Shared layout primitives ── */
+.page-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 100dvh;
+  background: var(--bg);
+  transition: background 0.22s ease;
+}
+
+/* ── Shared header ── */
+.page-header {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 18px;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+  flex-shrink: 0;
+  transition: background 0.22s ease, border-color 0.22s ease;
+}
+
+.page-header__left,
+.page-header__right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.page-header__title {
+  font-family: "DM Mono", monospace;
+  font-size: 13px;
+  color: var(--text);
+  letter-spacing: 0.02em;
+}
+
+.page-header__sub {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  color: var(--text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* ── Icon button (header) ── */
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  border-radius: 3px;
+  transition: color 0.12s, background 0.12s;
+}
+
+.icon-btn:hover {
+  color: var(--text);
+  background: var(--border);
+}
+
+/* ── Theme toggle ── */
+.theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 14px;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+
+.theme-btn:hover {
+  color: var(--text);
+  border-color: var(--border-mid);
+  background: var(--border);
+}
+
+/* ── Logout button ── */
+.logout-btn {
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  padding: 5px 11px;
+  transition: color 0.12s, border-color 0.12s;
+}
+
+.logout-btn:hover {
+  color: var(--text);
+  border-color: var(--border-mid);
+}
+
+/* ── Hamburger ── */
+.menu-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 3px;
+}
+
+.menu-btn span {
+  display: block;
+  width: 18px;
+  height: 1.5px;
+  background: var(--text-muted);
+  transition: background 0.15s;
+}
+
+.menu-btn:hover span { background: var(--text); }
+
+/* ── Week strip ── */
+.week-strip {
+  height: 54px;
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg-surface);
+  flex-shrink: 0;
+  transition: background 0.22s ease;
+}
+
+.week-strip__col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  border-right: 1px solid var(--border);
+  transition: background 0.22s ease;
+}
+
+.week-strip__col:last-child { border-right: none; }
+
+.week-strip__col--label {
+  flex: 0 0 62px;
+  min-width: 62px;
+  align-items: flex-start;
+  padding-left: 14px;
+}
+
+.week-strip__col--today {
+  background: rgba(128, 128, 128, 0.08);
+}
+
+.week-strip__year {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  color: var(--text-label);
+}
+
+.week-strip__wnum {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.week-strip__dayname {
+  font-family: "DM Mono", monospace;
+  font-size: 9px;
+  letter-spacing: 0.06em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+.week-strip__daynum {
+  font-family: "DM Mono", monospace;
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.week-strip__col--today .week-strip__dayname,
+.week-strip__col--today .week-strip__daynum {
+  color: var(--text);
+}
+
+/* ── Bottom nav ── */
+.bottom-nav {
+  height: 58px;
+  display: flex;
+  align-items: stretch;
+  border-top: 1px solid var(--border);
+  background: var(--bg-surface);
+  flex-shrink: 0;
+  transition: background 0.22s ease;
+}
+
+.bottom-nav__item {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  color: var(--text-muted);
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  transition: color 0.12s;
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.bottom-nav__item:hover,
+.bottom-nav__item--active {
+  color: var(--text);
+}
+
+/* ── Spinner ── */
+.ring {
+  display: block;
+  border-radius: 50%;
+  border-style: solid;
+  animation: spin 0.7s linear infinite;
+}
+
+.ring--sm {
+  width: 14px;
+  height: 14px;
+  border-width: 1.5px;
+  border-color: rgba(128, 128, 128, 0.2);
+  border-top-color: currentColor;
+}
+
+.ring--md {
+  width: 22px;
+  height: 22px;
+  border-width: 2px;
+  border-color: var(--border);
+  border-top-color: var(--text-muted);
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+
+/* ── Error banner ── */
+.error-banner {
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  color: var(--error);
+  background: color-mix(in srgb, var(--error) 8%, transparent);
+  border: 1px solid color-mix(in srgb, var(--error) 20%, transparent);
+  border-radius: 3px;
+  padding: 10px 14px;
+  letter-spacing: 0.02em;
+}
+
+/* ── Fade-up animation ── */
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-up { animation: fade-up 0.38s cubic-bezier(0.16, 1, 0.3, 1) both; }

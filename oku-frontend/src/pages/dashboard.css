@@ -1,0 +1,291 @@
+/* ─────────────────────────────────────────────
+   dashboard.css — Dashboard-specific styles
+   Shared vars & primitives are in theme.css
+───────────────────────────────────────────── */
+
+/* ── LIVE badge ── */
+.dash-live {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  color: var(--live);
+  animation: live-blink 2s ease-in-out infinite;
+}
+
+.dash-live__dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--live);
+  box-shadow: 0 0 6px var(--live);
+}
+
+@keyframes live-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.4; }
+}
+
+/* ── Main ── */
+.dash-main {
+  flex: 1;
+  padding: 24px 18px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.dash-loader {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ═══════════════════════════════════════
+   STAT CARDS
+═══════════════════════════════════════ */
+.dash-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.dash-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 18px 16px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  transition: background 0.15s;
+}
+
+.dash-card:hover { background: var(--bg-card-hover); }
+
+.dash-card__label {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--text-label);
+  margin-bottom: 4px;
+}
+
+.dash-card__row {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.dash-card__fire { font-size: 24px; line-height: 1; }
+
+.dash-card__big {
+  font-family: "DM Mono", monospace;
+  font-size: 40px;
+  font-weight: 300;
+  color: var(--text);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.dash-card__unit {
+  font-family: "DM Mono", monospace;
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.dash-card__sub {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-muted);
+  margin-top: 2px;
+}
+
+/* ── Progress ── */
+.dash-prog {
+  height: 2px;
+  background: var(--progress-track);
+  border-radius: 2px;
+  margin: 10px 0 2px;
+  overflow: hidden;
+}
+
+.dash-prog__fill {
+  height: 100%;
+  background: var(--progress-fill);
+  border-radius: 2px;
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ═══════════════════════════════════════
+   SUBJECT PICKER
+═══════════════════════════════════════ */
+.dash-picker {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  animation: fade-up 0.22s ease both;
+}
+
+.dash-picker__label {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.12em;
+  color: var(--text-label);
+}
+
+.dash-picker__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.dash-picker__item {
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: 3px;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  padding: 7px 14px;
+  transition: color 0.12s, border-color 0.12s, background 0.12s;
+}
+
+.dash-picker__item:hover {
+  color: var(--text);
+  border-color: var(--border-mid);
+}
+
+.dash-picker__item--on {
+  color: var(--text);
+  border-color: var(--border-focus);
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+}
+
+/* ═══════════════════════════════════════
+   SESSION BLOCK
+═══════════════════════════════════════ */
+.dash-session {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  padding: 8px 0;
+}
+
+/* ── Timer ── */
+.dash-timer {
+  text-align: center;
+  animation: fade-up 0.28s ease both;
+}
+
+.dash-timer__subject {
+  font-family: "DM Mono", monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.dash-timer__badge {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  color: var(--live);
+  margin-bottom: 10px;
+}
+
+.dash-timer__value {
+  font-family: "DM Mono", monospace;
+  font-size: 58px;
+  font-weight: 300;
+  color: var(--text);
+  letter-spacing: -0.02em;
+  line-height: 1;
+}
+
+/* ── Button ── */
+.dash-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  max-width: 300px;
+  padding: 16px 24px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "DM Mono", monospace;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  transition: all 0.15s ease;
+  min-height: 52px;
+}
+
+.dash-btn--start {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: var(--accent-inv);
+}
+
+.dash-btn--start:hover:not(:disabled) {
+  opacity: 0.9;
+  box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
+.dash-btn--end {
+  background: transparent;
+  border: 1px solid var(--border-mid);
+  color: var(--text);
+}
+
+.dash-btn--end:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--text) 5%, transparent);
+  border-color: var(--border-focus);
+}
+
+.dash-btn:active:not(:disabled) { transform: scale(0.98); }
+.dash-btn:disabled { opacity: 0.32; cursor: not-allowed; }
+
+/* ── Hints ── */
+.dash-hint {
+  font-size: 13px;
+  font-weight: 300;
+  color: var(--text-label);
+  text-align: center;
+}
+
+.dash-cancel {
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  letter-spacing: 0.1em;
+  padding: 4px 8px;
+  transition: color 0.12s;
+}
+
+.dash-cancel:hover { color: var(--text); }
+
+/* ── Responsive ── */
+@media (max-width: 380px) {
+  .dash-stats { grid-template-columns: 1fr; }
+  .dash-timer__value { font-size: 46px; }
+  .dash-card__big { font-size: 34px; }
+}

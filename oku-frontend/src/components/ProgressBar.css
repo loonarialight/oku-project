@@ -1,0 +1,30 @@
+.pbar {
+  position: relative;
+  width: 100%;
+  background: var(--progress-track, rgba(255,255,255,0.08));
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.pbar__fill {
+  height: 100%;
+  border-radius: 99px;
+  background: var(--progress-fill, rgba(255,255,255,0.5));
+}
+
+.pbar__fill--anim {
+  transition: width 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.pbar__fill--xp    { background: #c8b56a; }
+.pbar__fill--green { background: #4caf6e; }
+.pbar__fill--amber { background: #d4884a; }
+
+.pbar__label {
+  position: absolute;
+  right: 0;
+  top: -20px;
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  color: var(--text-muted, #666);
+}

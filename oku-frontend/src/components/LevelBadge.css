@@ -1,0 +1,89 @@
+.lvl-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: background 0.22s ease;
+}
+
+.lvl-card__top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.lvl-card__badge {
+  width: 52px;
+  height: 52px;
+  background: color-mix(in srgb, #c8b56a 12%, transparent);
+  border: 1px solid color-mix(in srgb, #c8b56a 30%, transparent);
+  border-radius: 4px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.lvl-card__num {
+  font-family: "DM Mono", monospace;
+  font-size: 22px;
+  font-weight: 500;
+  color: #c8b56a;
+  line-height: 1;
+}
+
+.lvl-card__label {
+  font-family: "DM Mono", monospace;
+  font-size: 8px;
+  letter-spacing: 0.1em;
+  color: #c8b56a;
+  opacity: 0.7;
+}
+
+.lvl-card__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.lvl-card__xp {
+  font-family: "DM Mono", monospace;
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text);
+}
+
+.lvl-card__next {
+  font-size: 12px;
+  font-weight: 300;
+  color: var(--text-muted);
+}
+
+/* ── Compact ── */
+.lvl-compact {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.lvl-compact__badge {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  font-weight: 500;
+  color: #c8b56a;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.lvl-compact__bar { flex: 1; }
+
+.lvl-compact__xp {
+  font-family: "DM Mono", monospace;
+  font-size: 10px;
+  color: var(--text-muted);
+  white-space: nowrap;
+}
